@@ -134,7 +134,7 @@ export default function App() {
     <div className="app-container">
       <header className="header">
         <div className="brand cursor-pointer" onClick={() => setView("main")}>
-          <span className="store">DIEGO</span><span className="checklist">OS</span>
+          <span className="store">DIEGO</span><span className="checklist">CK</span>
         </div>
         <div className="nav-group">
           <button className={`nav-btn ${view === "main" ? "active" : ""}`} onClick={() => setView("main")}>Check In Form</button>
@@ -157,12 +157,12 @@ export default function App() {
               <div style={{textAlign: 'center', padding: '40px'}}>
                 <div style={{fontSize: '3rem', marginBottom: '10px'}}>🔒</div>
                 <h2 style={{color: 'var(--danger)', marginBottom: '10px'}}>ACCESS RESTRICTED</h2>
-                <p style={{color: 'var(--text-secondary)'}}>Scan the latest protocol QR code to unlock this form.</p>
+                <p style={{color: 'var(--text-secondary)'}}>Scan the latest QR Code to unlock this form.</p>
               </div>
             ) : (
               <>
                 <div style={{marginBottom: '30px'}}>
-                   <span className="input-label">Trainee Identity *</span>
+                   <span className="input-label">Trainee Name *</span>
                    <input className="input-field" placeholder="Full Name..." value={traineeName} onChange={(e) => setTraineeName(e.target.value)} />
                 </div>
                 {questions.map((q) => (
@@ -277,12 +277,12 @@ export default function App() {
             </div>
 
             <div style={{marginTop: '30px'}}>
-              <span className="input-label">Protocol Field Management</span>
+              <span className="input-label">Questions Management</span>
               <div style={{display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px'}}>
                 <input className="input-field" value={qText} onChange={e => setQText(e.target.value)} placeholder="Field Label Name" />
                 <div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
                   <select className="input-field" value={qType} onChange={e => setQType(e.target.value)} style={{flex: 2}}>
-                    <option value="yesno">Yes/No/NA</option>
+                    <option value="yesno">Yes/No/N/A</option>
                     <option value="radio">Options</option>
                     <option value="input">Text Field</option>
                   </select>
