@@ -87,17 +87,30 @@ export default function App() {
     return questions.some(q => q.required && (!answers[q.id] || answers[q.id] === ""));
   };
 
+  // Fixed downloadQR with padding to prevent clipping
   const downloadQR = () => {
     const svg = qrRef.current.querySelector("svg");
     const svgData = new XMLSerializer().serializeToString(svg);
     const canvas = document.createElement("canvas");
     const img = new Image();
+    
     img.onload = () => {
-      canvas.width = img.width; canvas.height = img.height;
+      const padding = 40; // Internal border so QR is not cut
+      canvas.width = img.width + padding * 2;
+      canvas.height = img.height + padding * 2;
       const ctx = canvas.getContext("2d");
-      ctx.fillStyle = "white"; ctx.fillRect(0,0,canvas.width,canvas.height);
-      ctx.drawImage(img, 0, 0);
-      const a = document.createElement("a"); a.download = "Diego_QR.png"; a.href = canvas.toDataURL(); a.click();
+      
+      // Fill background white
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw QR code in the middle
+      ctx.drawImage(img, padding, padding);
+      
+      const a = document.createElement("a");
+      a.download = "Diego_CheckIn_QR.png";
+      a.href = canvas.toDataURL("image/png");
+      a.click();
       showMsg("QR Image Exported");
     };
     img.src = "data:image/svg+xml;base64," + btoa(svgData);
