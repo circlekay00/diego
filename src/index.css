@@ -103,3 +103,48 @@ body {
 }
 
 .cursor-pointer { cursor: pointer; }
+
+/* ... Keep all existing root and body styles ... */
+
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drag-item {
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  background: rgba(27, 38, 59, 0.6);
+  cursor: default;
+}
+
+.drag-handle {
+  cursor: grab;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  padding: 0 10px;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  color: var(--accent-cyan);
+}
+
+.q-info {
+  flex: 1;
+}
+
+.drag-item:hover {
+  border-color: rgba(76, 201, 240, 0.3);
+}
+
+/* Ensure inline-msg is always visible above drag elements */
+.inline-msg {
+  z-index: 200;
+  position: relative;
+}
